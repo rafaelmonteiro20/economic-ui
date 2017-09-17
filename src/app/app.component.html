@@ -29,7 +29,17 @@
                 <p-column field="descricao" header="Descrição"></p-column>
                 <p-column field="dataVencimento" header="Vencimento" styleClass="wid150 center"></p-column>
                 <p-column field="dataPagamento" header="Pagamento" styleClass="wid150 center"></p-column>
-                <p-column field="valor" header="Valor" styleClass="wid120 right"></p-column>
+                <p-column field="valor" header="Valor" styleClass="wid120 right">
+                    <ng-template let-lanc="rowData" pTemplate="body">
+                        <span [style.color]="lanc.tipo === 'DESPESA' ? '#F44336' : '#4CAF50'">{{lanc.valor}}</span>
+                    </ng-template>
+                </p-column>
+                <p-column styleClass="wid100 center">
+                    <ng-template pTemplate="body">
+                    <a pButton icon="fa-pencil"></a>
+                    <button pButton icon="fa-trash"></button>
+                    </ng-template>
+                </p-column>
             </p-dataTable>
         </div>
     </div>
