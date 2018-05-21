@@ -1,7 +1,24 @@
-<app-pessoa-cadastro></app-pessoa-cadastro>
-<app-pessoas-pesquisa></app-pessoas-pesquisa>
+<div class="container">
+    <div class="ui-g">
+        <div class="ui-g-12">
+            <h1>Categorias</h1>
+
+            <p-dataTable [value]="categorias">
+                <p-column header="Nome" field="nome"></p-column>
+                <p-column styleClass="center wid120">
+                    <ng-template pTemplate="body">
+                        <a pButton icon="fa-pencil"></a>
+                    </ng-template>
+                </p-column>
+            </p-dataTable>
+        </div>
+    </div>
+</div>
 
 <!--
+    <app-pessoa-cadastro></app-pessoa-cadastro>
+    <app-pessoas-pesquisa></app-pessoas-pesquisa>
+
     <app-lancamentos-pesquisa></app-lancamentos-pesquisa>
     <app-lancamento-cadastro></app-lancamento-cadastro>
     <app-pessoa-cadastro></app-pessoa-cadastro>
