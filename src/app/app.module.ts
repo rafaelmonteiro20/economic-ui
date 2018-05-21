@@ -12,12 +12,14 @@ import { DataTableModule } from 'primeng/components/datatable/datatable';
 
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
+import { CategoriasComponent } from './categorias/categorias.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    MessageComponent
+    MessageComponent,
+    CategoriasComponent
   ],
   imports: [
     BrowserModule,
