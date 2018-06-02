@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { TopbarComponent } from './topbar/topbar.component';
 import { MessageComponent } from './message/message.component';
 
 import { DataTableModule } from 'primeng/components/datatable/datatable';
@@ -21,7 +21,7 @@ import { HelloComponent } from './hello/hello.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
+    TopbarComponent,
     MessageComponent,
     CategoriasComponent,
     HelloComponent
