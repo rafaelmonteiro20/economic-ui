@@ -11,6 +11,7 @@ import 'rxjs/add/operator/toPromise';
 export class CategoriasComponent implements OnInit {
 
   categorias: any = [];
+  display: boolean = false;
 
   constructor(private http: Http) { }
 
@@ -24,6 +25,10 @@ export class CategoriasComponent implements OnInit {
                .then(response => {
                   this.categorias = response.json()
                })
+  }
+
+  showDialog() {
+    this.display = true;
   }
 
 }

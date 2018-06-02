@@ -1,16 +1,40 @@
 <div class="container">
-  <div class="ui-g">
-      <div class="ui-g-12">
-          <h1>Categorias</h1>
+    <div class="ui-g">
+        <div class="ui-g-12">
+            <h1>Categorias</h1>
 
-          <p-dataTable [value]="categorias">
-              <p-column header="Nome" field="nome"></p-column>
-              <p-column styleClass="center wid120">
-                  <ng-template pTemplate="body">
-                      <a pButton icon="fa-pencil"></a>
-                  </ng-template>
-              </p-column>
-          </p-dataTable>
-      </div>
-  </div>
+            <p-dataTable [value]="categorias">
+                <p-column header="Nome" field="nome"></p-column>
+                <p-column styleClass="center wid120">
+                    <ng-template pTemplate="body">
+                        <a pButton icon="fa-pencil"></a>
+                    </ng-template>
+                </p-column>
+            </p-dataTable>
+
+            <br />
+            
+            <button type="button" (click)="showDialog()" pButton label="Nova"
+                icon="fa-plus" iconPos="left"></button>
+            
+            <p-dialog [(visible)]="display" [modal]="true" [width]="400">
+                <p-header>
+                    Nova Categoria
+                </p-header>
+                
+                <div class="ui-g-12 ui-fluid">
+                    <label>Nome</label>
+                    <input type="text" pInputText />
+                </div>
+
+                <p-footer>
+                    <button pButton type="button" icon="fa-close" 
+                        iconPos="left" label="Cancelar" class="ui-button-secondary"></button>
+
+                    <button pButton type="button" icon="fa-check" 
+                        iconPos="left" label="Salvar"></button>
+                </p-footer>
+            </p-dialog>
+        </div>
+    </div>
 </div>
