@@ -8,23 +8,20 @@ import { AppComponent } from './app.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { MessageComponent } from './message/message.component';
 
-import { DataTableModule } from 'primeng/components/datatable/datatable';
-import { DialogModule } from 'primeng/components/dialog/dialog';
-import { ButtonModule } from 'primeng/components/button/button';
-import { InputTextModule } from 'primeng/components/inputtext/inputtext';
-
+import { CategoriasModule } from './categorias/categorias.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
-import { CategoriasComponent } from './categorias/categorias.component';
+
 import { HelloComponent } from './hello/hello.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopbarComponent,
     MessageComponent,
-    CategoriasComponent,
-    HelloComponent
+    HelloComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -32,11 +29,7 @@ import { HelloComponent } from './hello/hello.component';
     FormsModule,
     HttpModule,
 
-    DataTableModule,
-    DialogModule,
-    ButtonModule,
-    InputTextModule,
-
+    CategoriasModule,
     LancamentosModule,
     PessoasModule
   ],
