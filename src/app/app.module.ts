@@ -14,6 +14,7 @@ import { PessoasModule } from './pessoas/pessoas.module';
 
 import { HelloComponent } from './hello/hello.component';
 import { MenuComponent } from './menu/menu.component';
+import { LancamentoService } from './lancamentos/lancamento.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { MenuComponent } from './menu/menu.component';
     LancamentosModule,
     PessoasModule
   ],
-  providers: [],
+  providers: [LancamentoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
