@@ -15,9 +15,17 @@ body {
 .page-content {
     overflow-x: auto;
     margin-top: 56px;
+    margin-left: 220px;
+    padding: 15px;
     display: flex;
     -webkit-flex: 1;
     flex: 1;
+}
+
+.card {
+    background: #fff;
+    padding: 10px;
+    border-radius: 3px; 
 }
 
 label {
