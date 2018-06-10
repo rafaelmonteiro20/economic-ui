@@ -4,10 +4,12 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import * as moment from 'moment';
 
-export interface LancamentoFilter {
+export class LancamentoFilter {
   descricao: string;
   dataVencimentoDe: Date;
   dataVencimentoAte: Date;
+  pagina = 0;
+  itensPorPagina = 10;
 }
 
 @Injectable()
@@ -20,6 +22,9 @@ export class LancamentoService {
   pesquisar(filtro: LancamentoFilter): Promise<any> {
     const params = new URLSearchParams();
     const formato = 'YYYY-MM-DD';
+
+    params.set('page', filtro.pagina.toString());
+    params.set('size', filtro.itensPorPagina.toString());
 
     if(filtro.descricao) {
       params.set('descricao', filtro.descricao);
@@ -35,7 +40,7 @@ export class LancamentoService {
 
     return this.http.get(this.lancamentosUrl, { search: params })
                .toPromise()
-               .then(response => response.json().content);
+               .then(response => response.json());
   }
 
 }
