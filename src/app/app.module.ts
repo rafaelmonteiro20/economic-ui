@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { TopbarComponent } from './topbar/topbar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { MessageComponent } from './message/message.component';
 
 import { CategoriasModule } from './categorias/categorias.module';
@@ -13,16 +13,14 @@ import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
 
 import { HelloComponent } from './hello/hello.component';
-import { MenuComponent } from './menu/menu.component';
 import { LancamentoService } from './lancamentos/lancamento.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopbarComponent,
+    NavbarComponent,
     MessageComponent,
-    HelloComponent,
-    MenuComponent
+    HelloComponent
   ],
   imports: [
     BrowserModule,

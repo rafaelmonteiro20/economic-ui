@@ -1,31 +1,38 @@
-<div class="container">
+<div class="container" style="margin-top: 60px">
     <div class="ui-g">
         <div class="ui-g-12">
-            <h1>Lançamentos</h1>
+            <h1 style="font-size:26px">Lançamentos</h1>
         </div>
-
-        <form autocomplete="off" (ngSubmit)="pesquisar()">
-            <div class="ui-g-12 ui-fluid">
-                <label>Descrição</label>
+    </div>
+    
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
+        <div class="ui-g">
+            <div class="ui-g-4 ui-fluid">
+                <label class="form-control">Descrição</label>
                 <input pInputText type="text" name="descricao" 
                     [(ngModel)]="filtro.descricao">
             </div>
 
-            <div class="ui-g-12">
-                <label style="display: block">Vencimento</label>
+            <div class="ui-g-2 ui-fluid">
+                <label class="form-control">Vencimento</label>
                 <p-calendar dateFormat="dd/mm/yy" name="dataVencimentoDe" 
                     [(ngModel)]="filtro.dataVencimentoDe"></p-calendar>
-
-                <label>até</label>
+            </div>
+            
+            <div class="ui-g-2 ui-fluid">
+                <label class="form-control">até</label>
                 <p-calendar dateFormat="dd/mm/yy" name="dataVencimentoAte" 
                     [(ngModel)]="filtro.dataVencimentoAte"></p-calendar>
             </div>
 
-            <div class="ui-g-12">
-                <button pButton type="submit" label="Pesquisar"></button>
+            <div class="ui-g-2">
+                <button pButton type="submit" label="Pesquisar" 
+                    icon="fa-search" style="margin-top:22px"></button>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
+
+    <div style="height:15px;"></div>
 
     <div class="ui-g">
         <div class="ui-g-12">
