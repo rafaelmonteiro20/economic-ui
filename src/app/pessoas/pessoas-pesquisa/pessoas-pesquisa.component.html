@@ -1,44 +1,52 @@
-<div class="container">
+<div class="container" style="margin-top: 60px">
   <div class="ui-g">
-    <div class="ui-g-12">
-      <h1>Pessoas</h1>
-    </div>
-
-    <div class="ui-g-12 ui-fluid">
-      <label>Nome</label>
-      <input pInputText type="text">
-    </div>
-
-    <div class="ui-g-12">
-      <button pButton type="submit" label="Pesquisar"></button>
-    </div>
+      <div class="ui-g-12">
+          <h1 style="font-size:26px">Pessoas</h1>
+      </div>
   </div>
 
+  <form (ngSubmit)="pesquisar()" autocomplete="off">
+    <div class="ui-g">
+      <div class="ui-g-6 ui-fluid">
+        <label class="form-control">Nome</label>
+        <input pInputText type="text">
+      </div>
+
+      <div class="ui-g-3">
+        <button pButton type="submit" label="Pesquisar" 
+          icon="fa-search" style="margin-top:22px"></button>
+      </div>
+    </div>
+  </form>
+
+  <div style="height:15px;"></div>
+
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-dataTable [value]="pessoas" [rows]="5" [paginator]="true" [responsive]="true">
-          <p-column field="ativo" header="Status" styleClass="wid120 center">
-            <ng-template let-pes="rowData" pTemplate="body">
-                <a href="javascript:;" [pTooltip]="pes.ativo ? 'Desativar' : 'Ativar'"
-                    tooltipPosition="top">
-                  {{ pes.ativo ? 'Ativo' : 'Inativo' }}
-                </a>
-            </ng-template>
-          </p-column>
-          <p-column field="nome" header="Nome"></p-column>
-          <p-column field="cidade" header="Cidade"></p-column>
-          <p-column field="estado" header="Estado"></p-column>
-          <p-column styleClass="wid100 center">
-            <ng-template pTemplate="body">
-              <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-              <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"></button>
-            </ng-template>
-          </p-column>
+      <p-dataTable [value]="pessoas" [responsive]="true"
+        emptyMessage="Nenhuma pessoa encontrada.">
+          
+        <p-column field="ativo" header="Status" styleClass="wid120 center">
+          <ng-template let-pes="rowData" pTemplate="body">
+              <a href="javascript:;" [pTooltip]="pes.ativo ? 'Desativar' : 'Ativar'"
+                tooltipPosition="top">
+                {{ pes.ativo ? 'Ativo' : 'Inativo' }}
+              </a>
+          </ng-template>
+        </p-column>
+        <p-column field="nome" header="Nome"></p-column>
+        <p-column field="telefone" header="Telefone" styleClass="center"></p-column>
+        <p-column styleClass="wid100 center">
+          <ng-template pTemplate="body">
+            <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+            <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+          </ng-template>
+        </p-column>
       </p-dataTable>
     </div>
 
     <div class="ui-g-12">
-      <a pButton label="Nova Pessoa"></a>
+      <a pButton label="Nova Pessoa" icon="fa-plus-circle"></a>
     </div>
   </div>
 </div>
