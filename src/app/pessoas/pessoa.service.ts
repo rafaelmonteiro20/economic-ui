@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
+
+import { Pessoa } from './../core/model/Pessoa';
 
 @Injectable()
 export class PessoaService {
@@ -12,10 +14,19 @@ export class PessoaService {
 
   }
 
+  salvar(pessoa: Pessoa): Promise<Pessoa> {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post(this.urlPessoas, JSON.stringify(pessoa), { headers })
+              .toPromise()
+              .then(response => response.json());
+  }
+
   pesquisar(): Promise<any> {
     return this.http.get(this.urlPessoas)
-               .toPromise()
-               .then(response => response.json());
+              .toPromise()
+              .then(response => response.json());
   }
 
 }

@@ -2,6 +2,6 @@ export class Pessoa {
 
     nome: string;
     telefone: string;
-    ativa = true;
+    ativo = true;
 
 }
