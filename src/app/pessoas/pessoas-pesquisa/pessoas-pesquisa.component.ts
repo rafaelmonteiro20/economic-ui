@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PessoaService } from '../pessoa.service';
 
+import { ToastyService } from 'ng2-toasty';
+
 @Component({
   selector: 'app-pessoas-pesquisa',
   templateUrl: './pessoas-pesquisa.component.html',
@@ -10,7 +12,7 @@ export class PessoasPesquisaComponent implements OnInit {
   
   pessoas = [];
 
-  constructor(private pessoaService: PessoaService) {
+  constructor(private pessoaService: PessoaService, private toasty: ToastyService) {
 
   }
     
@@ -27,6 +29,7 @@ export class PessoasPesquisaComponent implements OnInit {
     this.pessoaService.excluir(pessoa.id)
         .then(() => {
           this.pesquisar();
+          this.toasty.success('Pessoa excluída com sucesso.');
         });
   }
 

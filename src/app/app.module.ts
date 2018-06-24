@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
+import { ToastyModule } from 'ng2-toasty';
+
 import { AppComponent } from './app.component';
 
 import { CoreModule } from './core/core.module';
@@ -33,6 +35,8 @@ const routes: Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
+
+    ToastyModule.forRoot(),
 
     CoreModule,
     CategoriasModule,
