@@ -8,9 +8,14 @@
   <form #formulario="ngForm" autocomplete="off" (ngSubmit)="salvar(formulario)">
     <div class="ui-g">
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label class="form-control-label required">Nome</label>
-        <input pInputText type="text" name="nome" required minlength="3"
-            [(ngModel)]="pessoa.nome">
+        <label class="form-control-label required" 
+          [class.has-error]="nome.invalid && nome.dirty">Nome</label>
+        <input pInputText type="text" name="nome" required minlength="3" 
+          maxlength="60" [(ngModel)]="pessoa.nome" #nome="ngModel">
+      
+        <app-message [control]="nome" error="required" text="Informe o nome"></app-message>
+        <app-message [control]="nome" error="minlength" 
+          text="Tamanho mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres"></app-message>
       </div>
     </div>
     

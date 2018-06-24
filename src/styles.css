@@ -34,6 +34,10 @@ body {
     display: block;
 }
 
+.form-control-label.has-error {
+    color: #f44336;
+}
+
 .required::after {
     content: ' *';
     color: #f44336;
@@ -46,6 +50,14 @@ a {
 
 a:hover, a:focus {
     text-decoration: underline;
+}
+
+.ui-inputtext.ng-dirty.ng-invalid {
+    border-color: #f44336;
+}
+
+.ui-inputtext.ng-dirty.ng-invalid:focus {
+    box-shadow: 0 0 5px #f44336;
 }
 
 .ui-dropdown-filter-container {

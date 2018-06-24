@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { InputSwitchModule } from 'primeng/components/inputswitch/inputswitch';
 
+import { SharedModule } from '../shared/shared.module';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 
@@ -22,7 +23,9 @@ import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.compo
     DataTableModule,
     TooltipModule,
     InputMaskModule,
-    InputSwitchModule
+    InputSwitchModule,
+
+    SharedModule
   ],
   declarations: [
     PessoasPesquisaComponent,

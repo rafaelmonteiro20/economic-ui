@@ -7,7 +7,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MessageComponent } from './message/message.component';
 
 import { CategoriasModule } from './categorias/categorias.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
@@ -29,7 +28,6 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     NavbarComponent,
-    MessageComponent,
     HelloComponent
   ],
   imports: [
