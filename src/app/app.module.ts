@@ -6,13 +6,12 @@ import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
 
+import { CoreModule } from './core/core.module';
 import { CategoriasModule } from './categorias/categorias.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
 
-import { HelloComponent } from './hello/hello.component';
 import { LancamentoService } from './lancamentos/lancamento.service';
 import { PessoaService } from './pessoas/pessoa.service';
 
@@ -26,9 +25,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent,
-    HelloComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +34,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forRoot(routes),
 
+    CoreModule,
     CategoriasModule,
     LancamentosModule,
     PessoasModule
