@@ -23,4 +23,11 @@ export class PessoasPesquisaComponent implements OnInit {
         .then(pessoas => this.pessoas = pessoas);
   }
 
+  excluir(pessoa: any) {
+    this.pessoaService.excluir(pessoa.id)
+        .then(() => {
+          this.pesquisar();
+        });
+  }
+
 }

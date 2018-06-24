@@ -29,4 +29,10 @@ export class PessoaService {
               .then(response => response.json());
   }
 
+  excluir(id: number): Promise<void> {
+    return this.http.delete(`${this.urlPessoas}/${id}`)
+              .toPromise()
+              .then(() => null);
+  }
+
 }
