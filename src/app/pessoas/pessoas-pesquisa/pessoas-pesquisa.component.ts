@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PessoaService } from '../pessoa.service';
 
 import { ToastyService } from 'ng2-toasty';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -12,7 +13,9 @@ export class PessoasPesquisaComponent implements OnInit {
   
   pessoas = [];
 
-  constructor(private pessoaService: PessoaService, private toasty: ToastyService) {
+  constructor(private pessoaService: PessoaService, 
+    private toasty: ToastyService,
+    private confirmation: ConfirmationService) {
 
   }
     
@@ -23,6 +26,15 @@ export class PessoasPesquisaComponent implements OnInit {
   pesquisar() {
     this.pessoaService.pesquisar()
         .then(pessoas => this.pessoas = pessoas);
+  }
+
+  confirmarExclusao(pessoa: any) {
+    this.confirmation.confirm({
+      message: 'Deseja excluir a pessoa selecionada?',
+      accept: () => {
+        this.excluir(pessoa);
+      }
+    });
   }
 
   excluir(pessoa: any) {

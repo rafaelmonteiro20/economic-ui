@@ -2,3 +2,12 @@
 <router-outlet></router-outlet>
 
 <ng2-toasty></ng2-toasty>
+
+<p-confirmDialog header="Confirmação" icon="fa fa-question-circle" #confirmation>
+    <p-footer>
+        <button pButton type="button" icon="fa-check" label="Sim"
+            (click)="confirmation.accept()"></button>
+        <button pButton type="button" icon="fa-times" label="Não"
+            (click)="confirmation.reject()"></button>
+    </p-footer>
+</p-confirmDialog>

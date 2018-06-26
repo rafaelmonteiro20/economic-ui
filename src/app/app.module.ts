@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ToastyModule } from 'ng2-toasty';
+import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
 import { AppComponent } from './app.component';
 
@@ -37,6 +39,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
 
     ToastyModule.forRoot(),
+    ConfirmDialogModule,
 
     CoreModule,
     CategoriasModule,
@@ -45,7 +48,8 @@ const routes: Routes = [
   ],
   providers: [
     LancamentoService,
-    PessoaService
+    PessoaService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })
