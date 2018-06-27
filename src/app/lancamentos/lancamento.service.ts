@@ -38,9 +38,15 @@ export class LancamentoService {
       params.set('dataVencimentoAte', moment(filtro.dataVencimentoAte).format(formato));
     }
 
-    return this.http.get(this.lancamentosUrl, { search: params })
+    return this.http.get(`${this.lancamentosUrl}?resumo`, { search: params })
                .toPromise()
                .then(response => response.json());
+  }
+
+  excluir(id: number): Promise<void> {
+    return this.http.delete(`${this.lancamentosUrl}/${id}`)
+              .toPromise()
+              .then(() => null);
   }
 
 }

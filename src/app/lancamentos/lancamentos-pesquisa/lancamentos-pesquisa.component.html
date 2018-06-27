@@ -8,19 +8,19 @@
     <form autocomplete="off" (ngSubmit)="pesquisar()">
         <div class="ui-g">
             <div class="ui-g-4 ui-fluid">
-                <label class="form-control">Descrição</label>
+                <label class="form-control-label">Descrição</label>
                 <input pInputText type="text" name="descricao" 
                     [(ngModel)]="filtro.descricao">
             </div>
 
             <div class="ui-g-2 ui-fluid">
-                <label class="form-control">Vencimento</label>
+                <label class="form-control-label">Vencimento</label>
                 <p-calendar dateFormat="dd/mm/yy" name="dataVencimentoDe" 
                     [(ngModel)]="filtro.dataVencimentoDe"></p-calendar>
             </div>
             
             <div class="ui-g-2 ui-fluid">
-                <label class="form-control">até</label>
+                <label class="form-control-label">até</label>
                 <p-calendar dateFormat="dd/mm/yy" name="dataVencimentoAte" 
                     [(ngModel)]="filtro.dataVencimentoAte"></p-calendar>
             </div>
@@ -40,7 +40,8 @@
                 emptyMessage="Nenhum lançamento encontrado."
                 [paginator]="true" [rows]="filtro.itensPorPagina"
                 [lazy]="true" [totalRecords]="totalRegistros"
-                (onLazyLoad)="paginar($event)">
+                (onLazyLoad)="paginar($event)" #tabela
+                [alwaysShowPaginator]="false">
                 
                 <p-column field="descricao" header="Descrição"></p-column>
                 <p-column field="pessoa" header="Pessoa"></p-column>
@@ -52,9 +53,10 @@
                     </ng-template>
                 </p-column>
                 <p-column styleClass="wid100 center">
-                    <ng-template pTemplate="body">
+                    <ng-template let-lancamento="rowData" pTemplate="body">
                         <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-                        <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+                        <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"
+                            (click)="confirmarExclusao(lancamento)"></button>
                     </ng-template>
                 </p-column>
             </p-dataTable>
