@@ -1,42 +1,47 @@
-<div class="page-content">
-    <div class="card">
+<div class="container" style="margin-top: 60px">
     <div class="ui-g">
         <div class="ui-g-12">
-            <h1>Categorias</h1>
+            <h1 style="font-size:26px">Categorias</h1>
+        </div>
+    </div>
 
+    <div class="ui-g">
+        <div class="ui-g-12">
             <p-dataTable [value]="categorias">
                 <p-column header="Nome" field="nome"></p-column>
-                <p-column styleClass="center wid120">
-                    <ng-template pTemplate="body">
-                        <a pButton icon="fa-pencil"></a>
+                <p-column styleClass="wid100 center">
+                    <ng-template let-categoria="rowData" pTemplate="body">
+                      <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+                      <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"
+                        (click)="confirmarExclusao(categoria)"></button>
                     </ng-template>
                 </p-column>
             </p-dataTable>
-
+            
             <br />
-            
+        
             <button type="button" (click)="showDialog()" pButton label="Nova"
-                icon="fa-plus" iconPos="left"></button>
-            
-            <p-dialog [(visible)]="display" [modal]="true" [width]="400">
-                <p-header>
-                    Nova Categoria
-                </p-header>
-                
-                <div class="ui-g-12 ui-fluid">
-                    <label>Nome</label>
-                    <input type="text" pInputText />
-                </div>
-
-                <p-footer>
-                    <button pButton type="button" icon="fa-close" 
-                        iconPos="left" label="Cancelar" class="ui-button-secondary"></button>
-
-                    <button pButton type="button" icon="fa-check" 
-                        iconPos="left" label="Salvar"></button>
-                </p-footer>
-            </p-dialog>
+                icon="fa-plus-circle" iconPos="left"></button>
         </div>
     </div>
-    </div>
+
+    <p-dialog [(visible)]="display" [modal]="true" [width]="400">
+        <p-header>
+            Nova Categoria
+        </p-header>
+                
+        <div class="ui-g-12 ui-fluid">
+            <label>Nome</label>
+            <input type="text" pInputText />
+        </div>
+
+        <p-footer>
+            <button pButton type="button" icon="fa-close" 
+                iconPos="left" label="Cancelar"></button>
+
+            <button pButton type="button" icon="fa-check" 
+                iconPos="left" label="Salvar"></button>
+        </p-footer>
+    </p-dialog>
 </div>
+    
