@@ -3,6 +3,9 @@ import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import { CategoriaService } from './categoria.service';
+import { ToastyService } from 'ng2-toasty';
+import { ErrorHandlerService } from '../core/error-handler.service';
+import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
 @Component({
   selector: 'app-categorias',
@@ -14,7 +17,11 @@ export class CategoriasComponent implements OnInit {
   categorias: any = [];
   display: boolean = false;
 
-  constructor(private categoriaService: CategoriaService) { }
+  constructor(
+    private categoriaService: CategoriaService,
+    private confirmation: ConfirmationService,
+    private toasty: ToastyService,
+    private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     this.pesquisar();
@@ -26,7 +33,21 @@ export class CategoriasComponent implements OnInit {
   }
 
   confirmarExclusao(categoria: any) {
-    console.log('Excluindo...', categoria.id)
+    this.confirmation.confirm({
+      message: 'Deseja excluir a categoria selecionada?',
+      accept: () => {
+        this.excluir(categoria);
+      }
+    });
+  }
+
+  excluir(categoria: any) {
+    this.categoriaService.excluir(categoria.id)
+        .then(() => {
+          this.pesquisar();
+          this.toasty.success('Categoria excluída com sucesso.')
+        })
+        .catch(error => this.errorHandler.handle(error));
   }
 
   showDialog() {

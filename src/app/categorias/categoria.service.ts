@@ -16,5 +16,10 @@ export class CategoriaService {
               .then(response => response.json());
   }
 
+  excluir(id: number): Promise<void> {
+    return this.http.delete(`${this.categoriasUrl}/${id}`)
+              .toPromise()
+              .then(() => null);
+  }
 
 }
