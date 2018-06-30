@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ToastyModule } from 'ng2-toasty';
@@ -31,7 +31,8 @@ import { CategoriaService } from '../categorias/categoria.service';
     PessoaService,
     CategoriaService,
     ConfirmationService,
-    ErrorHandlerService
+    ErrorHandlerService,
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 })
 export class CoreModule { }

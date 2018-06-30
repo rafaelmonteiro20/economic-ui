@@ -45,18 +45,28 @@
                 
                 <p-column field="descricao" header="Descrição"></p-column>
                 <p-column field="pessoa" header="Pessoa"></p-column>
-                <p-column field="dataVencimento" header="Vencimento" styleClass="wid150 center"></p-column>
-                <p-column field="dataPagamento" header="Pagamento" styleClass="wid150 center"></p-column>
-                <p-column field="valor" header="Valor" styleClass="wid120 right">
+                <p-column header="Vencimento" styleClass="wid150 center">
                     <ng-template let-lanc="rowData" pTemplate="body">
-                        <span [style.color]="lanc.tipo === 'DESPESA' ? '#F44336' : '#4CAF50'">{{lanc.valor}}</span>
+                        {{ lanc.dataVencimento | date:'dd/MM/y' }}
+                    </ng-template>
+                </p-column>
+                <p-column header="Pagamento" styleClass="wid150 center">
+                    <ng-template let-lanc="rowData" pTemplate="body">
+                        {{ lanc.dataPagamento | date:'dd/MM/y' }}
+                    </ng-template>
+                </p-column>
+                <p-column header="Valor" styleClass="wid120 right">
+                    <ng-template let-lanc="rowData" pTemplate="body">
+                        <span [style.color]="lanc.tipo === 'DESPESA' ? '#F44336' : '#4CAF50'">
+                            {{lanc.valor | number:'1.2-2'}}
+                        </span>
                     </ng-template>
                 </p-column>
                 <p-column styleClass="wid100 center">
-                    <ng-template let-lancamento="rowData" pTemplate="body">
+                    <ng-template let-lanc="rowData" pTemplate="body">
                         <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
                         <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"
-                            (click)="confirmarExclusao(lancamento)"></button>
+                            (click)="confirmarExclusao(lanc)"></button>
                     </ng-template>
                 </p-column>
             </p-dataTable>
