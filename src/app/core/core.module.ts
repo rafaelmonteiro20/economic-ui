@@ -11,10 +11,12 @@ import { ErrorHandlerService } from './error-handler.service';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { CategoriaService } from '../categorias/categoria.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     ToastyModule.forRoot(),
     ConfirmDialogModule,
   ],
