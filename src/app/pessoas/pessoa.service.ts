@@ -35,4 +35,10 @@ export class PessoaService {
               .then(() => null);
   }
 
+  mudarStatus(id: number): Promise<void> {
+    return this.http.put(`${this.urlPessoas}/${id}/mudar-status`, '', { })
+              .toPromise()
+              .then(() => null);
+  }
+
 }

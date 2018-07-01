@@ -27,10 +27,10 @@
         emptyMessage="Nenhuma pessoa encontrada.">
           
         <p-column field="ativo" header="Status" styleClass="wid120 center">
-          <ng-template let-pes="rowData" pTemplate="body">
-              <a href="javascript:;" [pTooltip]="pes.ativo ? 'Desativar' : 'Ativar'"
-                tooltipPosition="top">
-                {{ pes.ativo ? 'Ativo' : 'Inativo' }}
+          <ng-template let-pessoa="rowData" pTemplate="body">
+              <a href="javascript:;" [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'"
+                tooltipPosition="top" (click)="mudarStatus(pessoa)">
+                {{ pessoa.ativo ? 'Ativo' : 'Inativo' }}
               </a>
           </ng-template>
         </p-column>
