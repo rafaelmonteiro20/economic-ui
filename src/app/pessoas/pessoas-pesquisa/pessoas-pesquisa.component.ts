@@ -27,7 +27,8 @@ export class PessoasPesquisaComponent implements OnInit {
 
   pesquisar() {
     this.pessoaService.pesquisar()
-        .then(pessoas => this.pessoas = pessoas);
+        .then(pessoas => this.pessoas = pessoas)
+        .catch(error => this.errorHandler.handle(error));
   }
 
   confirmarExclusao(pessoa: any) {
@@ -44,7 +45,8 @@ export class PessoasPesquisaComponent implements OnInit {
         .then(() => {
           this.pesquisar();
           this.toasty.success('Pessoa excluída com sucesso.');
-        });
+        })
+        .catch(error => this.errorHandler.handle(error));
   }
 
   mudarStatus(pessoa: any) {
@@ -56,7 +58,7 @@ export class PessoasPesquisaComponent implements OnInit {
           pessoa.ativo = status;
           this.toasty.success(`Pessoa ${acao} com sucesso.`);
         })
-        .catch((error => this.errorHandler.handle(error)));
+        .catch(error => this.errorHandler.handle(error));
   }
 
 }
