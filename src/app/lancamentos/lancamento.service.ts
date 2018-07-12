@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/toPromise';
 import * as moment from 'moment';
+import { Lancamento } from '../core/model/Lancamento';
 
 export class LancamentoFilter {
   descricao: string;
@@ -18,6 +19,15 @@ export class LancamentoService {
   lancamentosUrl = "http://localhost:8081/lancamentos"
 
   constructor(private http: Http) { }
+
+  salvar(lancamento: Lancamento): Promise<any> {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post(this.lancamentosUrl, JSON.stringify(lancamento), { headers } )
+            .toPromise()
+            .then(response => response.json());
+  }
 
   pesquisar(filtro: LancamentoFilter): Promise<any> {
     const params = new URLSearchParams();
