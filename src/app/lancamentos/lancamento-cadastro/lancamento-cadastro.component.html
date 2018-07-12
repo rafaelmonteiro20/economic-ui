@@ -5,7 +5,7 @@
       </div>
   </div>
 
-  <form #formulario="ngForm" autocomplete="off">
+  <form #formulario="ngForm" autocomplete="off" (ngSubmit)="salvar(formulario)">
     <div class="ui-g">
       <div class="ui-g-12">          
         <p-selectButton [options]="tipos" [(ngModel)]="lancamento.tipo" #tipo
@@ -13,9 +13,10 @@
       </div>
       
       <div class="ui-g-6 ui-md-3 ui-fluid">
-        <label class="form-control-label required">Vencimento</label>
+        <app-label [control]="vencimento" value="Vencimento" required="true"></app-label>
         <p-calendar dateFormat="dd/mm/yy" name="vencimento"
           ngModel #vencimento="ngModel" required></p-calendar>
+        <app-message [control]="vencimento" error="required" text="Informe a data de vencimento"></app-message>
       </div>
       
       <div class="ui-g-6 ui-md-3 ui-fluid">
@@ -26,32 +27,40 @@
       </div>
       
       <div class="ui-g-12 ui-md-9 ui-fluid">
-        <label class="form-control-label required">Descrição</label>
+        <app-label [control]="descricao" value="Descrição" required="true"></app-label>
         <input pInputText type="text" name="descricao"
-          ngModel #descricao="ngModel" required minlength="5">
+          ngModel #descricao="ngModel" required minlength="3">
+        <app-message [control]="descricao" error="required" text="Informe a descrição"></app-message>
+        <app-message [control]="descricao" error="minlength" 
+          text="Tamanho mínimo de {{ descricao.errors?.minlength?.requiredLength }} caracteres"></app-message>
       </div>
       
       <div class="ui-g-12 ui-md-3 ui-fluid">
-        <label class="form-control-label required">Valor</label>
+        <app-label [control]="valor" value="Valor" required="true"></app-label>
         <input pInputText type="text" placeholder="0,00" currencyMask name="valor" required
-          [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }" ngModel>
+          [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }" 
+          ngModel #valor="ngModel">
+        <app-message [control]="valor" error="required" text="Informe o valor"></app-message>
       </div>
       
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label class="form-control-label required">Categoria</label>
+        <app-label [control]="categoria" value="Categoria" required="true"></app-label>
         <p-dropdown [options]="categorias" [autoWidth]="false" name="categoria"
-          placeholder="Selecione" ngModel required></p-dropdown>
+          placeholder="Selecione" ngModel #categoria="ngModel" required></p-dropdown>
+        <app-message [control]="categoria" error="required" text="Informe a categoria"></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label class="form-control-label required">Pessoa</label>
+        <app-label [control]="pessoa" value="Pessoa" required="true"></app-label>
         <p-dropdown [options]="pessoas" [autoWidth]="false" name="pessoa"
-          placeholder="Selecione" [filter]="true" ngModel required></p-dropdown>
+          placeholder="Selecione" [filter]="true" ngModel 
+          #pessoa="ngModel" required></p-dropdown>
+        <app-message [control]="pessoa" error="required" text="Informe a pessoa"></app-message>
       </div>
         
       <div class="ui-g-12 ui-fluid">
         <label class="form-control-label">Observação</label>
-        <textarea pInputTextarea rows="3" name="observacao"></textarea>
+        <textarea pInputTextarea rows="3" name="observacao" ngModel></textarea>
       </div>
       
       <div class="ui-g-12">

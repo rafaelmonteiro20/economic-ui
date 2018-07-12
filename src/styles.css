@@ -52,12 +52,13 @@ a:hover, a:focus {
     text-decoration: underline;
 }
 
-.ui-inputtext.ng-dirty.ng-invalid {
+.ui-inputtext.ng-dirty.ng-invalid, p-calendar.ng-dirty.ng-invalid > .ui-calendar > .ui-inputtext {
     border-color: #f44336;
 }
 
-.ui-inputtext.ng-dirty.ng-invalid:focus {
-    box-shadow: 0 0 5px #f44336;
+.ui-inputtext.ng-dirty.ng-invalid:focus, 
+    p-calendar.ng-dirty.ng-invalid > .ui-calendar > .ui-inputtext:focus {
+    box-shadow: 0 0 5px #ffb0aa;
 }
 
 .ui-dropdown-filter-container {

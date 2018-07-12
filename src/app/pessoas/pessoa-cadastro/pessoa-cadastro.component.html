@@ -8,8 +8,7 @@
   <form #formulario="ngForm" autocomplete="off" (ngSubmit)="salvar(formulario)">
     <div class="ui-g">
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label class="form-control-label required" 
-          [class.has-error]="nome.invalid && nome.dirty">Nome</label>
+        <app-label [control]="nome" value="Nome" required="true"></app-label>
         <input pInputText type="text" name="nome" required minlength="3" 
           maxlength="60" [(ngModel)]="pessoa.nome" #nome="ngModel">
       
@@ -21,8 +20,8 @@
     
     <div class="ui-g">
       <div class="ui-g-12 ui-md-3 ui-fluid">
-        <label class="form-control-label">Telefone</label>
-        <p-inputMask mask="(99) 9 9999-9999" name="telefone"
+        <app-label [control]="telefone" value="Telefone"></app-label>
+        <p-inputMask mask="(99) 9 9999-9999" name="telefone" #telefone="ngModel"
           [(ngModel)]="pessoa.telefone"></p-inputMask>
       </div>
 
