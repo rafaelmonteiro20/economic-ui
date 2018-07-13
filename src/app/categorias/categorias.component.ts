@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
 
-import 'rxjs/add/operator/toPromise';
-import { CategoriaService } from './categoria.service';
 import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from '../core/error-handler.service';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+
+import { CategoriaService } from './categoria.service';
+import 'rxjs/add/operator/toPromise';
+import { Categoria } from '../core/model/Categoria';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-categorias',
@@ -15,6 +17,8 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
 export class CategoriasComponent implements OnInit {
 
   categorias: any = [];
+  categoria = new Categoria();
+
   display: boolean = false;
 
   constructor(
@@ -30,6 +34,18 @@ export class CategoriasComponent implements OnInit {
   pesquisar() {
     return this.categoriaService.pesquisar()
                .then(categorias => this.categorias = categorias);
+  }
+
+  salvar(form: NgForm) {
+    this.categoriaService.salvar(this.categoria)
+        .then(() => {
+          this.categoria = new Categoria();
+          form.reset();
+          this.display = false;
+          this.pesquisar();
+          this.toasty.success('Categoria salva com sucesso.');
+        })
+        .catch(error => this.errorHandler.handle(error));
   }
 
   confirmarExclusao(categoria: any) {
@@ -50,8 +66,14 @@ export class CategoriasComponent implements OnInit {
         .catch(error => this.errorHandler.handle(error));
   }
 
-  showDialog() {
+  showDialog(form: NgForm) {
     this.display = true;
+    this.categoria = new Categoria();
+    form.reset();
+  }
+
+  hideDialog() {
+    this.display = false;
   }
 
 }

@@ -20,28 +20,35 @@
             
             <br />
         
-            <button type="button" (click)="showDialog()" pButton label="Nova Categoria"
+            <button type="button" (click)="showDialog(formulario)" pButton label="Nova Categoria"
                 icon="fa-plus-circle" iconPos="left"></button>
         </div>
     </div>
 
-    <p-dialog [(visible)]="display" [modal]="true" [width]="400">
-        <p-header>
-            Nova Categoria
-        </p-header>
-                
-        <div class="ui-g-12 ui-fluid">
-            <label>Nome</label>
-            <input type="text" pInputText />
-        </div>
+    <form #formulario="ngForm" autocomplete="off" (ngSubmit)="salvar(formulario)">
+        <p-dialog [(visible)]="display" [modal]="true" [width]="400">
+            <p-header>
+                Nova Categoria
+            </p-header>
+        
+            <div class="ui-g-12 ui-fluid">
+                <app-label [control]="nome" value="Nome" required="true"></app-label>
+                <input pInputText type="text" name="nome" required minlength="3" 
+                    maxlength="60" [(ngModel)]="categoria.nome" #nome="ngModel">
+                <app-message [control]="nome" error="required" text="Informe o nome"></app-message>
+                <app-message [control]="nome" error="minlength" 
+                    text="Tamanho mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres">
+                </app-message>
+            </div>
 
-        <p-footer>
-            <button pButton type="button" icon="fa-close" 
-                iconPos="left" label="Cancelar"></button>
+            <p-footer>
+                <button pButton type="button" icon="fa-close" 
+                    iconPos="left" label="Cancelar" (click)="hideDialog()"></button>
 
-            <button pButton type="button" icon="fa-check" 
-                iconPos="left" label="Salvar"></button>
-        </p-footer>
-    </p-dialog>
+                <button pButton type="submit" [disabled]="formulario.invalid"
+                    icon="fa-check" iconPos="left" label="Salvar"></button>
+            </p-footer>
+        </p-dialog>
+    </form>
 </div>
     
