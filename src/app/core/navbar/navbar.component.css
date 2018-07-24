@@ -102,7 +102,7 @@
     transition: color .2s;
 }
 
-.nav-tab-link:hover {
+.nav-tab-link:hover, .nav-tab-link.active {
     color: #fff;
 }
 
