@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
+import { ToastyService } from 'ng2-toasty';
+
 import { Lancamento } from '../../core/model/Lancamento';
 import { LancamentoService } from '../lancamento.service';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { CategoriaService } from '../../categorias/categoria.service';
 import { PessoaService } from '../../pessoas/pessoa.service';
-import { NgForm } from '@angular/forms';
-import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -29,11 +32,26 @@ export class LancamentoCadastroComponent implements OnInit {
     private categoriaService: CategoriaService,
     private pessoaService: PessoaService,
     private errorHandler: ErrorHandlerService,
-    private toasty: ToastyService) { }
+    private toasty: ToastyService, 
+    private route: ActivatedRoute) { }
  
   ngOnInit() {
+    const lancamentoID = this.route.snapshot.params['id'];
+
+    if(lancamentoID) {
+      this.carregarLancamento(lancamentoID);
+    }
+    
     this.carregarCategorias();
     this.carregarPessoas();
+  }
+
+  carregarLancamento(id: number) {
+    this.lancamentoService.buscarPorID(id)
+        .then(lancamento => {
+            this.lancamento = lancamento;
+        })
+        .catch(erro => this.errorHandler.handle(erro));
   }
 
   salvar(form: NgForm) {
@@ -64,6 +82,10 @@ export class LancamentoCadastroComponent implements OnInit {
           })
         })
         .catch(error => this.errorHandler.handle(error));
+  }
+
+  get editando() {
+    return Boolean(this.lancamento.id);
   }
 
 }

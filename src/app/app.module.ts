@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'pessoas/form', component: PessoaCadastroComponent },
   { path: 'lancamentos', component: LancamentosPesquisaComponent },
   { path: 'lancamentos/form', component: LancamentoCadastroComponent },
+  { path: 'lancamentos/:id', component: LancamentoCadastroComponent },
   { path: 'categorias', component: CategoriasComponent }
 ];
 

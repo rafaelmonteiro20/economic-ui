@@ -59,4 +59,21 @@ export class LancamentoService {
               .then(() => null);
   }
 
+  buscarPorID(id: number): Promise<any> {
+    return this.http.get(`${this.lancamentosUrl}/${id}`)
+            .toPromise()
+            .then(response => {
+              const lancamento = response.json() as Lancamento; 
+              this.converterStringsParaDatas(lancamento);
+              return lancamento;
+            });
+  }
+
+  private converterStringsParaDatas(lancamento: Lancamento) {
+    lancamento.dataVencimento = moment(lancamento.dataVencimento, 'YYYY-MM-DD').toDate();
+    
+    if (lancamento.dataPagamento) {
+      lancamento.dataPagamento = moment(lancamento.dataPagamento, 'YYYY-MM-DD').toDate();
+    }
+  }
 }
