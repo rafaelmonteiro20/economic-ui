@@ -59,6 +59,19 @@ export class LancamentoService {
               .then(() => null);
   }
 
+  atualizar(lancamento: Lancamento) : Promise<any> {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    
+    return this.http.put(`${this.lancamentosUrl}/${lancamento.id}`, JSON.stringify(lancamento), { headers })
+              .toPromise()
+              .then((response) => {
+                const lancamento = response.json() as Lancamento;
+                this.converterStringsParaDatas(lancamento);
+                return lancamento;
+              });
+  }
+
   buscarPorID(id: number): Promise<any> {
     return this.http.get(`${this.lancamentosUrl}/${id}`)
             .toPromise()
