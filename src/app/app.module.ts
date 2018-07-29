@@ -3,7 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
@@ -11,25 +10,7 @@ import { CoreModule } from './core/core.module';
 import { CategoriasModule } from './categorias/categorias.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
-
-import { PessoaCadastroComponent } from './pessoas/pessoa-cadastro/pessoa-cadastro.component';
-import { PessoasPesquisaComponent } from './pessoas/pessoas-pesquisa/pessoas-pesquisa.component';
-import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa/lancamentos-pesquisa.component';
-import { LancamentoCadastroComponent } from './lancamentos/lancamento-cadastro/lancamento-cadastro.component';
-import { CategoriasComponent } from './categorias/categorias.component';
-import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada/pagina-nao-encontrada.component';
-
-const routes: Routes = [
-  { path: '', redirectTo: '/lancamentos', pathMatch: 'full' },
-  { path: 'pessoas', component: PessoasPesquisaComponent },
-  { path: 'pessoas/form', component: PessoaCadastroComponent },
-  { path: 'lancamentos', component: LancamentosPesquisaComponent },
-  { path: 'lancamentos/form', component: LancamentoCadastroComponent },
-  { path: 'lancamentos/:id', component: LancamentoCadastroComponent },
-  { path: 'categorias', component: CategoriasComponent },
-  { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
-  { path: '**', redirectTo: '/pagina-nao-encontrada' }
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -40,14 +21,16 @@ const routes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes),
     
     CoreModule,
+    AppRoutingModule,
     CategoriasModule,
     LancamentosModule,
     PessoasModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
