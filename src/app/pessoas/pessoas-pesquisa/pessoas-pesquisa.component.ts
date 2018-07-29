@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { PessoaService } from '../pessoa.service';
+import { Title } from '../../../../node_modules/@angular/platform-browser';
 
 import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+
+import { PessoaService } from '../pessoa.service';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 
 @Component({
@@ -17,12 +19,12 @@ export class PessoasPesquisaComponent implements OnInit {
   constructor(private pessoaService: PessoaService, 
     private confirmation: ConfirmationService,
     private toasty: ToastyService,
-    private errorHandler: ErrorHandlerService) {
-
-  }
+    private errorHandler: ErrorHandlerService,
+    private title: Title) { }
     
   ngOnInit() {
-     this.pesquisar();
+    this.title.setTitle('Pesquisa de Pessoas');
+    this.pesquisar();
   }
 
   pesquisar() {

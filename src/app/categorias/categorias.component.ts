@@ -1,13 +1,15 @@
+import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Title } from '../../../node_modules/@angular/platform-browser';
 
 import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from '../core/error-handler.service';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
 import { CategoriaService } from './categoria.service';
-import 'rxjs/add/operator/toPromise';
 import { Categoria } from '../core/model/Categoria';
-import { NgForm } from '@angular/forms';
+
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-categorias',
@@ -25,9 +27,11 @@ export class CategoriasComponent implements OnInit {
     private categoriaService: CategoriaService,
     private confirmation: ConfirmationService,
     private toasty: ToastyService,
-    private errorHandler: ErrorHandlerService) { }
+    private errorHandler: ErrorHandlerService, 
+    private title: Title) { }
 
   ngOnInit() {
+    this.title.setTitle('Categorias');
     this.pesquisar();
   }
 

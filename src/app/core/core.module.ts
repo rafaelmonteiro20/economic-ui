@@ -13,6 +13,7 @@ import { PessoaService } from './../pessoas/pessoa.service';
 
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { Title } from '../../../node_modules/@angular/platform-browser';
 
 @NgModule({
   imports: [
