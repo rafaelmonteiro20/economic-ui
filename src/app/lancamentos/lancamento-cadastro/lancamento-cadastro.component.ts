@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { NgForm, FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToastyService } from 'ng2-toasty';
 
@@ -33,7 +33,8 @@ export class LancamentoCadastroComponent implements OnInit {
     private pessoaService: PessoaService,
     private errorHandler: ErrorHandlerService,
     private toasty: ToastyService, 
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute, 
+    private router: Router) { }
  
   ngOnInit() {
     const lancamentoID = this.route.snapshot.params['id'];
@@ -48,10 +49,10 @@ export class LancamentoCadastroComponent implements OnInit {
 
   carregarLancamento(id: number) {
     this.lancamentoService.buscarPorID(id)
-        .then(lancamento => {
-            this.lancamento = lancamento;
-        })
-        .catch(erro => this.errorHandler.handle(erro));
+      .then(lancamento => {
+        this.lancamento = lancamento;
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   salvar(form: NgForm) {
@@ -61,15 +62,14 @@ export class LancamentoCadastroComponent implements OnInit {
       this.adicionarLancamento(form);
     }
   }
-
+  
   adicionarLancamento(form: NgForm) {
     this.lancamentoService.salvar(this.lancamento)
-      .then(() => {
-        this.lancamento = new Lancamento();
-        form.reset();
-        this.toasty.success('Lançamento salvo com sucesso.');
-      })
-      .catch(error => this.errorHandler.handle(error));
+    .then(() => {
+      this.toasty.success('Lançamento salvo com sucesso.');
+      this.router.navigate(['/lancamentos']);
+    })
+    .catch(error => this.errorHandler.handle(error));
   }
 
   atualizarLancamento() {
@@ -83,26 +83,36 @@ export class LancamentoCadastroComponent implements OnInit {
 
   carregarCategorias() {
     this.categoriaService.pesquisar()
-        .then(categorias => {
-          this.categorias = categorias.map(c => {
-            return { label: c.nome, value: c.id }
-          })
+      .then(categorias => {
+        this.categorias = categorias.map(c => {
+          return { label: c.nome, value: c.id }
         })
-        .catch(error => this.errorHandler.handle(error));
+      })
+      .catch(error => this.errorHandler.handle(error));
   }
 
   carregarPessoas() {
     this.pessoaService.pesquisar()
-        .then(pessoas => {
-          this.pessoas = pessoas.map(p => {
-            return { label: p.nome, value: p.id }
-          })
+      .then(pessoas => {
+        this.pessoas = pessoas.map(p => {
+          return { label: p.nome, value: p.id }
         })
-        .catch(error => this.errorHandler.handle(error));
+      })
+      .catch(error => this.errorHandler.handle(error));
   }
 
   get editando() {
     return Boolean(this.lancamento.id);
+  }
+
+  novo(form: FormControl) {
+    form.reset();
+
+    setTimeout(function() {
+      this.lancamento = new Lancamento();
+    }.bind(this), 1);
+
+    this.router.navigate(['/lancamentos/form']);
   }
 
 }
