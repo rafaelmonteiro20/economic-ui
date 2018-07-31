@@ -19,26 +19,32 @@ export class PessoaService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.post(this.urlPessoas, JSON.stringify(pessoa), { headers })
-              .toPromise()
-              .then(response => response.json());
+            .toPromise()
+            .then(response => response.json());
   }
 
   pesquisar(): Promise<any> {
     return this.http.get(this.urlPessoas)
-              .toPromise()
-              .then(response => response.json());
+            .toPromise()
+            .then(response => response.json());
   }
 
   excluir(id: number): Promise<void> {
     return this.http.delete(`${this.urlPessoas}/${id}`)
-              .toPromise()
-              .then(() => null);
+            .toPromise()
+            .then(() => null);
   }
 
   mudarStatus(id: number): Promise<void> {
     return this.http.put(`${this.urlPessoas}/${id}/mudar-status`, '', { })
-              .toPromise()
-              .then(() => null);
+            .toPromise()
+            .then(() => null);
+  }
+
+  buscarPorID(id: number): Promise<any> {
+    return this.http.get(`${this.urlPessoas}/${id}`)
+            .toPromise()
+            .then(response => response.json() as Pessoa);
   }
 
 }

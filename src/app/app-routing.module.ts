@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/lancamentos', pathMatch: 'full' },
   { path: 'pessoas', component: PessoasPesquisaComponent },
   { path: 'pessoas/form', component: PessoaCadastroComponent },
+  { path: 'pessoas/:id', component: PessoaCadastroComponent },
   { path: 'lancamentos', component: LancamentosPesquisaComponent },
   { path: 'lancamentos/form', component: LancamentoCadastroComponent },
   { path: 'lancamentos/:id', component: LancamentoCadastroComponent },
