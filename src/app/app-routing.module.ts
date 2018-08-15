@@ -8,8 +8,12 @@ import { LancamentoCadastroComponent } from './lancamentos/lancamento-cadastro/l
 import { CategoriasComponent } from './categorias/categorias.component';
 import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada/pagina-nao-encontrada.component';
 
+import { SegurancaModule } from './seguranca/seguranca.module';
+import { LoginComponent } from './seguranca/login/login.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/lancamentos', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   { path: 'pessoas', component: PessoasPesquisaComponent },
   { path: 'pessoas/form', component: PessoaCadastroComponent },
   { path: 'pessoas/:id', component: PessoaCadastroComponent },
