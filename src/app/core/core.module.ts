@@ -6,6 +6,7 @@ import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdia
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { ToastyModule } from 'ng2-toasty';
 
+import { AuthService } from '../seguranca/auth.service';
 import { LancamentoService } from './../lancamentos/lancamento.service';
 import { CategoriaService } from '../categorias/categoria.service';
 import { ErrorHandlerService } from './error-handler.service';
@@ -13,7 +14,6 @@ import { PessoaService } from './../pessoas/pessoa.service';
 
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { Title } from '../../../node_modules/@angular/platform-browser';
 
 @NgModule({
   imports: [
@@ -32,6 +32,7 @@ import { Title } from '../../../node_modules/@angular/platform-browser';
     ConfirmDialogModule
   ],
   providers: [
+    AuthService,
     LancamentoService,
     PessoaService,
     CategoriaService,
