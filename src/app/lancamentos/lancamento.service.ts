@@ -1,9 +1,11 @@
-import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 
-import 'rxjs/add/operator/toPromise';
+import { AuthHttp } from '../../../node_modules/angular2-jwt';
 import * as moment from 'moment';
+
 import { Lancamento } from '../core/model/Lancamento';
+
+import 'rxjs/add/operator/toPromise';
 
 export class LancamentoFilter {
   descricao: string;
@@ -18,15 +20,12 @@ export class LancamentoService {
 
   lancamentosUrl = "http://localhost:8081/lancamentos"
 
-  constructor(private http: Http) { }
+  constructor(private http: AuthHttp) { }
 
   salvar(lancamento: Lancamento): Promise<any> {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
-    return this.http.post(this.lancamentosUrl, JSON.stringify(lancamento), { headers } )
-            .toPromise()
-            .then(response => response.json());
+    return this.http.post(this.lancamentosUrl, JSON.stringify(lancamento))
+      .toPromise()
+      .then(response => response.json());
   }
 
   pesquisar(filtro: LancamentoFilter): Promise<any> {
@@ -49,37 +48,34 @@ export class LancamentoService {
     }
 
     return this.http.get(`${this.lancamentosUrl}?resumo`, { search: params })
-               .toPromise()
-               .then(response => response.json());
+      .toPromise()
+      .then(response => response.json());
   }
 
   excluir(id: number): Promise<void> {
     return this.http.delete(`${this.lancamentosUrl}/${id}`)
-              .toPromise()
-              .then(() => null);
+      .toPromise()
+      .then(() => null);
   }
 
   atualizar(lancamento: Lancamento) : Promise<any> {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    
-    return this.http.put(`${this.lancamentosUrl}/${lancamento.id}`, JSON.stringify(lancamento), { headers })
-              .toPromise()
-              .then((response) => {
-                const lancamento = response.json() as Lancamento;
-                this.converterStringsParaDatas(lancamento);
-                return lancamento;
-              });
+    return this.http.put(`${this.lancamentosUrl}/${lancamento.id}`, JSON.stringify(lancamento))
+      .toPromise()
+      .then((response) => {
+        const lancamento = response.json() as Lancamento;
+        this.converterStringsParaDatas(lancamento);
+        return lancamento;
+      });
   }
 
   buscarPorID(id: number): Promise<any> {
     return this.http.get(`${this.lancamentosUrl}/${id}`)
-            .toPromise()
-            .then(response => {
-              const lancamento = response.json() as Lancamento; 
-              this.converterStringsParaDatas(lancamento);
-              return lancamento;
-            });
+      .toPromise()
+      .then(response => {
+        const lancamento = response.json() as Lancamento; 
+        this.converterStringsParaDatas(lancamento);
+        return lancamento;
+      });
   }
 
   private converterStringsParaDatas(lancamento: Lancamento) {
