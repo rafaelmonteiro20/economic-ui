@@ -15,17 +15,17 @@
                 Home
               </a>
             </li>
-            <li class="nav-tab-container nav-tab">
+            <li *ngIf="auth.temPermissao('ROLE_PESQUISAR_LANCAMENTO')" class="nav-tab-container nav-tab">
               <a routerLink="/lancamentos" routerLinkActive="active" class="nav-tab nav-tab-link">
                 Lançamentos
               </a>
             </li>
-            <li class="nav-tab-container nav-tab">
+            <li *ngIf="auth.temPermissao('ROLE_PESQUISAR_PESSOA')" class="nav-tab-container nav-tab">
               <a routerLink="/pessoas" routerLinkActive="active" class="nav-tab nav-tab-link">
                 Pessoas
               </a>
             </li>
-            <li class="nav-tab-container nav-tab">
+            <li *ngIf="auth.temPermissao('ROLE_PESQUISAR_CATEGORIA')" class="nav-tab-container nav-tab">
               <a routerLink="/categorias" routerLinkActive="active" class="nav-tab nav-tab-link">
                 Categorias
               </a>
