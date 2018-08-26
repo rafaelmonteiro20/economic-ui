@@ -10,6 +10,7 @@ import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { EconomicHttp } from './economic-http';
+import { AuthGuard } from './auth.guard';
 
 export function authHttpServiceFactory(auth: AuthService, http: Http, options: RequestOptions) {
   const config = new AuthConfig({
@@ -37,7 +38,8 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
       provide: AuthHttp,
       useFactory: authHttpServiceFactory,
       deps: [AuthService, Http, RequestOptions]
-    }
+    },
+    AuthGuard
   ]
 })
 export class SegurancaModule { }

@@ -14,6 +14,7 @@ import { ErrorHandlerService } from './error-handler.service';
 import { PessoaService } from './../pessoas/pessoa.service';
 
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { PaginaAcessoNegadoComponent } from './pagina-acesso-negado/pagina-acesso-negado.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { NavbarComponent } from './navbar/navbar.component';
   ],
   declarations: [
     NavbarComponent,
+    PaginaAcessoNegadoComponent,
     PaginaNaoEncontradaComponent
   ],
   exports: [
