@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { AuthHttp } from '../../../node_modules/angular2-jwt';
+import { environment } from '../../environments/environment';
 import * as moment from 'moment';
 
 import { Lancamento } from '../core/model/Lancamento';
@@ -18,9 +19,11 @@ export class LancamentoFilter {
 @Injectable()
 export class LancamentoService {
 
-  lancamentosUrl = "http://localhost:8081/lancamentos"
+  lancamentosUrl: string;
 
-  constructor(private http: AuthHttp) { }
+  constructor(private http: AuthHttp) {
+    this.lancamentosUrl = `${environment.domain}/lancamentos`
+  }
 
   salvar(lancamento: Lancamento): Promise<any> {
     return this.http.post(this.lancamentosUrl, JSON.stringify(lancamento))

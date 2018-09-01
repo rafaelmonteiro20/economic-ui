@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthHttp } from '../../../node_modules/angular2-jwt';
+import { environment } from '../../environments/environment';
 
 import { Pessoa } from './../core/model/Pessoa';
 import 'rxjs/add/operator/toPromise';
@@ -7,9 +8,11 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class PessoaService {
 
-  urlPessoas = 'http://localhost:8081/pessoas';
+  urlPessoas: string;
 
-  constructor(private http: AuthHttp) { }
+  constructor(private http: AuthHttp) {
+    this.urlPessoas = `${environment.domain}/pessoas`
+  }
 
   salvar(pessoa: Pessoa): Promise<Pessoa> {
     return this.http.post(this.urlPessoas, JSON.stringify(pessoa))
