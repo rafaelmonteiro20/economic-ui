@@ -1,3 +1,4 @@
+import { URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 import { AuthHttp } from '../../../node_modules/angular2-jwt';
