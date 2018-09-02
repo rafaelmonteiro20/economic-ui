@@ -1,9 +1,14 @@
+import { URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { AuthHttp } from '../../../node_modules/angular2-jwt';
 import { environment } from '../../environments/environment';
 
 import { Pessoa } from './../core/model/Pessoa';
 import 'rxjs/add/operator/toPromise';
+
+export class PessoaFilter {
+  nome: string;
+}
 
 @Injectable()
 export class PessoaService {
@@ -20,7 +25,19 @@ export class PessoaService {
       .then(response => response.json());
   }
 
-  pesquisar(): Promise<any> {
+  pesquisar(filtro: PessoaFilter): Promise<any> {
+    const params = new URLSearchParams();
+    
+    if(filtro.nome) {
+      params.set('nome', filtro.nome);
+    }
+
+    return this.http.get(this.urlPessoas, { search: params })
+      .toPromise()
+      .then(response => response.json());
+  }
+
+  listarTodas() {
     return this.http.get(this.urlPessoas)
       .toPromise()
       .then(response => response.json());

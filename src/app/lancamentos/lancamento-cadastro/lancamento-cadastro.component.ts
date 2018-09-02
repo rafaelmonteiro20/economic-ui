@@ -99,7 +99,7 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   carregarPessoas() {
-    this.pessoaService.pesquisar()
+    this.pessoaService.listarTodas()
       .then(pessoas => {
         this.pessoas = pessoas.map(p => {
           return { label: p.nome, value: p.id }

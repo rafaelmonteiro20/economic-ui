@@ -4,7 +4,7 @@ import { Title } from '../../../../node_modules/@angular/platform-browser';
 import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 
-import { PessoaService } from '../pessoa.service';
+import { PessoaService, PessoaFilter } from '../pessoa.service';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 
 @Component({
@@ -15,6 +15,7 @@ import { ErrorHandlerService } from '../../core/error-handler.service';
 export class PessoasPesquisaComponent implements OnInit {
   
   pessoas = [];
+  filtro = new PessoaFilter();
 
   constructor(private pessoaService: PessoaService, 
     private confirmation: ConfirmationService,
@@ -28,9 +29,9 @@ export class PessoasPesquisaComponent implements OnInit {
   }
 
   pesquisar() {
-    this.pessoaService.pesquisar()
-        .then(pessoas => this.pessoas = pessoas)
-        .catch(error => this.errorHandler.handle(error));
+    this.pessoaService.pesquisar(this.filtro)
+      .then(pessoas => this.pessoas = pessoas)
+      .catch(error => this.errorHandler.handle(error));
   }
 
   confirmarExclusao(pessoa: any) {
@@ -44,11 +45,11 @@ export class PessoasPesquisaComponent implements OnInit {
 
   excluir(pessoa: any) {
     this.pessoaService.excluir(pessoa.id)
-        .then(() => {
-          this.pesquisar();
-          this.toasty.success('Pessoa excluída com sucesso.');
-        })
-        .catch(error => this.errorHandler.handle(error));
+      .then(() => {
+        this.pesquisar();
+        this.toasty.success('Pessoa excluída com sucesso.');
+      })
+      .catch(error => this.errorHandler.handle(error));
   }
 
   mudarStatus(pessoa: any) {
