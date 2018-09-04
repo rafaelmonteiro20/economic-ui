@@ -7,7 +7,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { CalendarModule } from 'primeng/calendar';
 import { TooltipModule } from 'primeng/tooltip';
-import { DataTableModule } from 'primeng/datatable';
+import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
@@ -27,7 +27,7 @@ import { SharedModule } from '../shared/shared.module';
     InputTextModule,
     InputTextareaModule,
     ButtonModule,
-    DataTableModule,
+    TableModule,
     TooltipModule,
     CalendarModule,
     SelectButtonModule,

@@ -23,28 +23,45 @@
 
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-dataTable [value]="pessoas" [responsive]="true"
-        emptyMessage="Nenhuma pessoa encontrada.">
-          
-        <p-column field="ativo" header="Status" styleClass="wid120 center">
-          <ng-template let-pessoa="rowData" pTemplate="body">
+      <p-table [value]="pessoas" [responsive]="true">
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="wid120">Ativo</th>
+            <th>Nome</th>
+            <th class="wid250">Telefone</th>
+            <th class="wid100"></th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-pessoa>
+          <tr>
+            <td class="center">
               <a href="javascript:;" [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'"
                 tooltipPosition="top" (click)="mudarStatus(pessoa)">
-                {{ pessoa.ativo ? 'Ativo' : 'Inativo' }}
+                <i class="fa fa-check-circle green fs20" *ngIf="pessoa.ativo"></i>
+                <i class="fa fa-minus-circle red fs20" *ngIf="!pessoa.ativo"></i>
               </a>
-          </ng-template>
-        </p-column>
-        <p-column field="nome" header="Nome"></p-column>
-        <p-column field="telefone" header="Telefone" styleClass="center"></p-column>
-        <p-column styleClass="wid100 center">
-          <ng-template let-pessoa="rowData" pTemplate="body">
-            <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"
-              [routerLink]="['/pessoas', pessoa.id]"></a>
-            <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"
-              (click)="confirmarExclusao(pessoa)"></button>
-          </ng-template>
-        </p-column>
-      </p-dataTable>
+            </td>
+            <td>{{ pessoa.nome }}</td>
+            <td class="center">{{ pessoa.telefone }}</td>
+            <td class="center">
+              <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"
+                [routerLink]="['/pessoas', pessoa.id]"></a>
+              <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"
+                (click)="confirmarExclusao(pessoa)">
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+              <td colspan="4">
+                  Nenhuma pessoa encontrada.
+              </td>
+          </tr>
+        </ng-template>
+      </p-table>
     </div>
 
     <div class="ui-g-12">

@@ -2,7 +2,7 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DataTableModule } from 'primeng/datatable';
+import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -14,11 +14,10 @@ import { SharedModule } from "../shared/shared.module";
     imports: [
         CommonModule,
         FormsModule,
-        DataTableModule,
+        TableModule,
         DialogModule,
         ButtonModule,
         InputTextModule,
-
         SharedModule
     ],
     declarations: [
