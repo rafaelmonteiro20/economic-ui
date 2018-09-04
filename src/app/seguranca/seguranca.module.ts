@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { Http, RequestOptions } from '../../../node_modules/@angular/http';
 
 import { AuthHttp, AuthConfig } from '../../../node_modules/angular2-jwt';
-import { ButtonModule } from 'primeng/components/button/button';
-import { InputTextModule } from 'primeng/components/inputtext/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
@@ -44,4 +44,6 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     LogoutService
   ]
 })
-export class SegurancaModule { }
+export class SegurancaModule {
+  
+}

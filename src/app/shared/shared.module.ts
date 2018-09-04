@@ -17,4 +17,6 @@ import { LabelComponent } from './label/label.component';
     MessageComponent
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+  
+}
