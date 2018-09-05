@@ -12,13 +12,12 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { SharedModule } from '../shared/shared.module';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
-import { RouterModule } from '@angular/router';
+import { PessoasRoutingModule } from './pessoas-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule,
 
     InputTextModule,
     ButtonModule,
@@ -27,16 +26,14 @@ import { RouterModule } from '@angular/router';
     InputMaskModule,
     InputSwitchModule,
 
-    SharedModule
+    SharedModule,
+    PessoasRoutingModule
   ],
   declarations: [
     PessoasPesquisaComponent,
     PessoaCadastroComponent,
   ],
-  exports: [
-    PessoasPesquisaComponent,
-    PessoaCadastroComponent,
-  ]
+  exports: []
 })
 export class PessoasModule {
   

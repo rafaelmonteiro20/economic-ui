@@ -12,6 +12,7 @@ import { AuthService } from './auth.service';
 import { EconomicHttp } from './economic-http';
 import { AuthGuard } from './auth.guard';
 import { LogoutService } from './logout.service';
+import { SegurancaRoutingModule } from './seguranca-routing.module';
 
 export function authHttpServiceFactory(auth: AuthService, http: Http, options: RequestOptions) {
   const config = new AuthConfig({
@@ -29,7 +30,8 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     FormsModule,
 
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    SegurancaRoutingModule
   ],
   declarations: [
     LoginComponent

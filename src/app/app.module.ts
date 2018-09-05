@@ -24,11 +24,11 @@ import { AppRoutingModule } from './app-routing.module';
     HttpModule,
     
     CoreModule,
-    AppRoutingModule,
     CategoriasModule,
     LancamentosModule,
     PessoasModule,
-    SegurancaModule
+    SegurancaModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [

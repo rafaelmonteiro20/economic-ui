@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 
 import { CategoriasComponent } from "./categorias.component";
 import { SharedModule } from "../shared/shared.module";
+import { CategoriasRoutingModule } from './categorias-routing.module';
 
 @NgModule({
     imports: [
@@ -18,14 +19,13 @@ import { SharedModule } from "../shared/shared.module";
         DialogModule,
         ButtonModule,
         InputTextModule,
-        SharedModule
+        SharedModule,
+        CategoriasRoutingModule
     ],
     declarations: [
         CategoriasComponent
     ],
-    exports: [
-        CategoriasComponent
-    ]
+    exports: []
 })
 export class CategoriasModule {
 
