@@ -7,6 +7,7 @@ import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada/pagin
 const routes: Routes = [
   { path: 'lancamentos', loadChildren: 'app/lancamentos/lancamentos.module#LancamentosModule' },
   { path: 'pessoas', loadChildren: 'app/pessoas/pessoas.module#PessoasModule' },
+  { path: 'categorias', loadChildren: 'app/categorias/categorias.module#CategoriasModule' },
 
   { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
   { path: 'acesso-negado', component: PaginaAcessoNegadoComponent },
@@ -18,9 +19,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes)
   ],
-  exports: [
-      RouterModule
-  ]
+  exports: [RouterModule]
 })
 export class AppRoutingModule {
   

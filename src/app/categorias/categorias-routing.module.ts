@@ -6,12 +6,10 @@ import { CategoriasComponent } from './categorias.component';
 
 const routes: Routes = [
     { 
-        path: 'categorias', 
+        path: '', 
         component: CategoriasComponent,
         canActivate: [AuthGuard],
-        data: {
-          roles: ['ROLE_PESQUISAR_CATEGORIA']
-        }
+        data: { roles: ['ROLE_PESQUISAR_CATEGORIA']}
     }
 ]
 

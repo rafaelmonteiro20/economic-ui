@@ -6,31 +6,31 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 
 const routes: Routes = [
-    { 
-        path: 'lancamentos', 
-        component: LancamentosPesquisaComponent,
-        canActivate: [AuthGuard],
-        data: { roles: ['ROLE_PESQUISAR_LANCAMENTO']}
-    },
-    { 
-        path: 'lancamentos/form', 
-        component: LancamentoCadastroComponent,
-        canActivate: [AuthGuard],
-        data: { roles: ['ROLE_CADASTRAR_LANCAMENTO']}
-    },
-    { 
-        path: 'lancamentos/:id', 
-        component: LancamentoCadastroComponent,
-        canActivate: [AuthGuard],
-        data: { roles: ['ROLE_CADASTRAR_LANCAMENTO']}
-    }
+  {
+    path: '',
+    component: LancamentosPesquisaComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ROLE_PESQUISAR_LANCAMENTO'] }
+  },
+  {
+    path: 'form',
+    component: LancamentoCadastroComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ROLE_CADASTRAR_LANCAMENTO'] }
+  },
+  {
+    path: ':id',
+    component: LancamentoCadastroComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ROLE_CADASTRAR_LANCAMENTO'] }
+  }
 ];
 
 @NgModule({
-    imports: [
-      RouterModule.forChild(routes)
-    ],
-    exports: [RouterModule]
+  imports: [
+    RouterModule.forChild(routes)
+  ],
+  exports: [RouterModule]
 })
 export class LancamentosRoutingModule {
 
