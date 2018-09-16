@@ -1,33 +1,40 @@
-import { NgModule, LOCALE_ID } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
 
-import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
-import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+import localePt from '@angular/common/locales/pt';
+
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastyModule } from 'ng2-toasty';
 import { JwtHelper } from 'angular2-jwt';
 
-import { AuthService } from '../seguranca/auth.service';
-import { LancamentoService } from './../lancamentos/lancamento.service';
-import { CategoriaService } from '../categorias/categoria.service';
+import { AuthService } from './../seguranca/auth.service';
 import { ErrorHandlerService } from './error-handler.service';
 import { PessoaService } from './../pessoas/pessoa.service';
-
-import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
-import { PaginaAcessoNegadoComponent } from './pagina-acesso-negado/pagina-acesso-negado.component';
+import { LancamentoService } from './../lancamentos/lancamento.service';
+import { CategoriaService } from './../categorias/categoria.service';
 import { NavbarComponent } from './navbar/navbar.component';
+import { PaginaAcessoNegadoComponent } from './pagina-acesso-negado/pagina-acesso-negado.component';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
+
+registerLocaleData(localePt);
 
 @NgModule({
   imports: [
     CommonModule,
+    HttpModule,
     RouterModule,
+
     ToastyModule.forRoot(),
     ConfirmDialogModule,
   ],
   declarations: [
     NavbarComponent,
-    PaginaAcessoNegadoComponent,
-    PaginaNaoEncontradaComponent
+    PaginaNaoEncontradaComponent,
+    PaginaAcessoNegadoComponent
   ],
   exports: [
     NavbarComponent,
@@ -35,14 +42,18 @@ import { NavbarComponent } from './navbar/navbar.component';
     ConfirmDialogModule
   ],
   providers: [
-    AuthService,
     LancamentoService,
     PessoaService,
     CategoriaService,
-    ConfirmationService,
     ErrorHandlerService,
+    AuthService,
+
+    ConfirmationService,
     JwtHelper,
-    { provide: LOCALE_ID, useValue: 'pt-BR' }
+    Title,
+    { provide: LOCALE_ID, useValue: 'pt' }
   ]
 })
-export class CoreModule { }
+export class CoreModule {
+
+}

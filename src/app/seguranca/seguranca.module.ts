@@ -1,25 +1,26 @@
+import { Http, RequestOptions } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Http, RequestOptions } from '../../../node_modules/@angular/http';
 
-import { AuthHttp, AuthConfig } from '../../../node_modules/angular2-jwt';
-import { ButtonModule } from 'primeng/components/button/button';
-import { InputTextModule } from 'primeng/components/inputtext/inputtext';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
-import { LoginComponent } from './login/login.component';
-import { AuthService } from './auth.service';
-import { EconomicHttp } from './economic-http';
 import { AuthGuard } from './auth.guard';
 import { LogoutService } from './logout.service';
+import { AuthService } from './auth.service';
+import { EconomicHttp } from './economic-http';
+import { LoginComponent } from './login/login.component';
+import { SegurancaRoutingModule } from './seguranca-routing.module';
 
 export function authHttpServiceFactory(auth: AuthService, http: Http, options: RequestOptions) {
   const config = new AuthConfig({
-      globalHeaders: [
-        { 'Content-Type':'application/json' }
-      ]
+    globalHeaders: [
+      { 'Content-Type': 'application/json' }
+    ]
   });
-  
+
   return new EconomicHttp(auth, config, http, options);
 }
 
@@ -29,7 +30,9 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     FormsModule,
 
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+
+    SegurancaRoutingModule
   ],
   declarations: [
     LoginComponent
@@ -44,4 +47,6 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     LogoutService
   ]
 })
-export class SegurancaModule { }
+export class SegurancaModule {
+
+}

@@ -1,50 +1,46 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
-import { DropdownModule } from 'primeng/components/dropdown/dropdown';
-import { InputSwitchModule } from 'primeng/components/inputswitch/inputswitch';
-import { SelectButtonModule } from 'primeng/components/selectbutton/selectbutton';
-import { CalendarModule } from 'primeng/components/calendar/calendar';
-import { TooltipModule } from 'primeng/components/tooltip/tooltip';
-import { DataTableModule } from 'primeng/components/datatable/datatable';
-import { ButtonModule } from 'primeng/components/button/button';
-import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea';
-import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { DropdownModule } from 'primeng/dropdown';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TooltipModule } from 'primeng/tooltip';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
+import { SharedModule } from './../shared/shared.module';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
-import { RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule,
+    ReactiveFormsModule,
 
     InputTextModule,
-    InputTextareaModule,
     ButtonModule,
-    DataTableModule,
+    TableModule,
     TooltipModule,
+    InputTextareaModule,
     CalendarModule,
     SelectButtonModule,
     DropdownModule,
-    InputSwitchModule,
-
     CurrencyMaskModule,
-    SharedModule
+
+    SharedModule,
+    LancamentosRoutingModule
   ],
   declarations: [
     LancamentoCadastroComponent,
     LancamentosPesquisaComponent
   ],
-  exports: [
-    LancamentoCadastroComponent,
-    LancamentosPesquisaComponent
-  ]
+  exports: []
 })
 export class LancamentosModule {
 
