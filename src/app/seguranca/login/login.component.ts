@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   logar(email: string, senha: string) {
     this.auth.login(email, senha)
-      .then(() => this.router.navigate(['/lancamentos']))
+      .then(() => this.router.navigate(['/home']))
       .catch(error => this.errorHandler.handle(error));
   }
 
