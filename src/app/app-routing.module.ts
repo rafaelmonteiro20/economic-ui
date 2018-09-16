@@ -8,8 +8,9 @@ const routes: Routes = [
   { path: 'lancamentos', loadChildren: 'app/lancamentos/lancamentos.module#LancamentosModule' },
   { path: 'pessoas', loadChildren: 'app/pessoas/pessoas.module#PessoasModule' },
   { path: 'categorias', loadChildren: 'app/categorias/categorias.module#CategoriasModule' },
+  { path: 'home', loadChildren: 'app/home/home.module#HomeModule' },
 
-  { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'acesso-negado', component: PaginaAcessoNegadoComponent },
   { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
   { path: '**', redirectTo: 'pagina-nao-encontrada' }
