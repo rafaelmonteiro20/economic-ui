@@ -14,21 +14,7 @@ import { ErrorHandlerService } from '../../core/error-handler.service';
 export class HomeComponent implements OnInit {
 
   pieChartData: any;
-
-  lineChartData = {
-    labels: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-    datasets: [
-      {
-        label: 'Receitas',
-        data: [4, 10, 18, 5, 1, 20, 3],
-        borderColor: '#3366CC'
-      }, {
-        label: 'Despesas',
-        data: [10, 15, 8, 5, 1, 7, 9],
-        borderColor: '#D62B00'
-      }
-    ]
-  };
+  lineChartData: any;
 
   constructor(
     private homeService: HomeService,
@@ -37,6 +23,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.carregarDadosGraficoPizza();
+    this.carregarDadosGraficoLinha();
     this.title.setTitle('Home');
   }
 
@@ -53,6 +40,63 @@ export class HomeComponent implements OnInit {
         }
       })
       .catch(error => this.errorHandler.handle(error));
+  }
+
+  carregarDadosGraficoLinha() {
+    this.homeService.lancamentosPorDia()
+      .then(dados => {
+        const diasDoMes = this.diasDoMes();
+        this.lineChartData = {
+          labels: diasDoMes,
+          datasets: [{
+            label: 'Receitas',
+            borderColor: '#3366CC',
+            data: this.totaisPorTipo('RECEITA', dados, diasDoMes)
+          },
+          {
+            label: 'Despesas',
+            borderColor: '#D62B00',
+            data: this.totaisPorTipo('DESPESA', dados, diasDoMes)
+          }]
+        }
+      })
+      .catch(error => this.errorHandler.handle(error));
+  }
+
+  private totaisPorTipo(tipo: string, dados: Array<any>, diasDoMes: number[]) {
+    const dadosPorTipo = dados.filter(dado => dado.tipo === tipo)
+    return this.totaisPorDia(dadosPorTipo, diasDoMes);
+  }
+
+  private totaisPorDia(dados, diasDoMes) {
+    const totais: number[] = [];
+    for(let dia of diasDoMes) {
+      let total = 0;
+      
+      for(let dado of dados) {
+        if(dado.data.getDate() === dia) {
+          total = dado.valor;
+          break;
+        }
+      }
+      totais.push(total);
+    }
+    return totais;
+  }
+
+  private diasDoMes() {
+    const mesReferencia = new Date();
+    mesReferencia.setMonth(mesReferencia.getMonth() + 1);
+    mesReferencia.setDate(0);
+    
+    const quantidadeDias = mesReferencia.getDate();
+    const dias: number[] = [];
+    
+    for(let dia = 1; dia <= quantidadeDias; dia++) {
+      dias.push(dia);
+    }
+
+    return dias;
   }
 
 }
