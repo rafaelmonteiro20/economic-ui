@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'lancamentos', loadChildren: 'app/lancamentos/lancamentos.module#LancamentosModule' },
   { path: 'pessoas', loadChildren: 'app/pessoas/pessoas.module#PessoasModule' },
   { path: 'categorias', loadChildren: 'app/categorias/categorias.module#CategoriasModule' },
+  { path: 'relatorios', loadChildren: 'app/relatorios/relatorios.module#RelatoriosModule' },
   { path: 'home', loadChildren: 'app/home/home.module#HomeModule' },
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
