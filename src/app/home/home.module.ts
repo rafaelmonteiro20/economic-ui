@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 
 import { PanelModule } from 'primeng/panel';
 import { ChartModule } from 'primeng/chart';
@@ -18,6 +18,7 @@ import { HomeComponent } from './home/home.component';
     SharedModule,
     HomeRoutingModule
   ],
-  declarations: [HomeComponent]
+  declarations: [HomeComponent],
+  providers: [DecimalPipe]
 })
 export class HomeModule { }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-
-import { ToastyService } from 'ng2-toasty';
+import { DecimalPipe } from '@angular/common';
 
 import { HomeService } from '../home.service';
 import { ErrorHandlerService } from '../../core/error-handler.service';
@@ -16,8 +15,23 @@ export class HomeComponent implements OnInit {
   pieChartData: any;
   lineChartData: any;
 
+  options = {
+    tooltips: {
+      callbacks: {
+        label: (tooltipItem, data) => {
+          const dataset = data.datasets[tooltipItem.datasetIndex];
+          const valor = dataset.data[tooltipItem.index];
+          const label = dataset.label ? (dataset.label + ': ') : '';
+
+          return label + this.decimalPipe.transform(valor, '1.2-2');
+        }
+      }
+    }
+  };
+
   constructor(
     private homeService: HomeService,
+    private decimalPipe: DecimalPipe,
     private errorHandler: ErrorHandlerService, 
     private title: Title) { }
 
