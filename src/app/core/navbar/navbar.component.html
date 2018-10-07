@@ -30,6 +30,12 @@
                 Categorias
               </a>
             </li>
+            <li *ngIf="auth.temPermissao('ROLE_PESQUISAR_LANCAMENTO')" class="nav-tab-container nav-tab">
+                <a routerLink="/relatorios/lancamentos-por-pessoa" routerLinkActive="active" 
+                  class="nav-tab nav-tab-link">
+                  Relatório
+                </a>
+              </li>
           </ul>
         </nav>
       </div>
