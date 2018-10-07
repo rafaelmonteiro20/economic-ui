@@ -2,8 +2,29 @@
   <div class="ui-g">
       <div class="ui-g-12">
           <h1 style="font-size:26px">
-            Lançamentos por pessoa
+            Relatório de lançamentos por pessoa
           </h1>
       </div>
   </div>
+
+  <form #formulario="ngForm" autocomplete="off" (ngSubmit)="gerar()">
+    <div class="ui-g">
+      <div class="ui-lg-2 ui-md-3 ui-g-6 ui-fluid">
+        <label class="form-control-label">Vencimento</label>
+        <p-calendar format="dd/mm/yy" required
+          [(ngModel)]="dataInicio" name="dataInicio"></p-calendar>
+      </div>
+
+      <div class="ui-lg-2 ui-md-3 ui-g-6 ui-fluid">
+        <label class="form-control-label">até</label>
+        <p-calendar format="dd/mm/yy" required
+          [(ngModel)]="dataFim" name="dataFim"></p-calendar>
+      </div>
+
+      <div class="ui-md-2 ui-g-3">
+        <button pButton type="submit" label="Gerar" [disabled]="formulario.invalid"
+          style="margin-top:22px" icon="fa fa-file-pdf-o"></button>
+      </div>
+    </div>
+  </form>
 </div>
