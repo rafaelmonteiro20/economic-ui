@@ -26,9 +26,9 @@
       <p-table [value]="usuarios" [responsive]="true">
         <ng-template pTemplate="header">
           <tr>
-            <th class="wid120">Ativo</th>
+            <th class="wid100">Ativo</th>
             <th>Nome</th>
-            <th class="wid250">E-mail</th>
+            <th>E-mail</th>
             <th class="wid100">Admin</th>
             <th class="wid100"></th>
           </tr>
@@ -44,7 +44,7 @@
               </a>
             </td>
             <td>{{ usuario.nome }}</td>
-            <td class="center">{{ usuario.email }}</td>
+            <td>{{ usuario.email }}</td>
             <td class="center">{{ usuario.root }}</td>
             <td class="center">
               <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"

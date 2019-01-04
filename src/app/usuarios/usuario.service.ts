@@ -1,4 +1,8 @@
+import { URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { AuthHttp } from 'angular2-jwt';
+import { environment } from '../../environments/environment';
+import 'rxjs/add/operator/toPromise';
 
 export class UsuarioFilter {
   nome: string
@@ -7,6 +11,22 @@ export class UsuarioFilter {
 @Injectable()
 export class UsuarioService {
 
-  constructor() { }
+  urlUsuarios: string;
+
+  constructor(private http: AuthHttp) {
+    this.urlUsuarios = `${environment.domain}/usuarios`
+  }
+
+  pesquisar(filtro: UsuarioFilter) {
+    const params = new URLSearchParams();
+
+    if(filtro.nome) {
+      params.set('nome', filtro.nome);
+    }
+    
+    return this.http.get(`${this.urlUsuarios}`, { search: params })
+      .toPromise()
+      .then(response => response.json());
+  }
 
 }
