@@ -1,0 +1,73 @@
+<div class="container" style="margin-top: 60px">
+  <div class="ui-g">
+      <div class="ui-g-12">
+          <h1 style="font-size:26px">Usuários</h1>
+      </div>
+  </div>
+
+  <form (ngSubmit)="pesquisar()" autocomplete="off">
+    <div class="ui-g">
+      <div class="ui-g-6 ui-fluid">
+        <label class="form-control-label">Nome</label>
+        <input pInputText type="text" [(ngModel)]="filtro.nome" name="nome">
+      </div>
+
+      <div class="ui-g-3">
+        <button pButton type="submit" label="Pesquisar" 
+          icon="fa-search" style="margin-top:22px"></button>
+      </div>
+    </div>
+  </form>
+
+  <div style="height:15px;"></div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-table [value]="usuarios" [responsive]="true">
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="wid120">Ativo</th>
+            <th>Nome</th>
+            <th class="wid250">E-mail</th>
+            <th class="wid100">Admin</th>
+            <th class="wid100"></th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-usuario>
+          <tr>
+            <td class="center">
+              <a href="javascript:;" [pTooltip]="usuario.ativo ? 'Desativar' : 'Ativar'"
+                tooltipPosition="top" (click)="mudarStatus(usuario)">
+                <i class="fa fa-check-circle green fs20" *ngIf="usuario.ativo"></i>
+                <i class="fa fa-minus-circle red fs20" *ngIf="!usuario.ativo"></i>
+              </a>
+            </td>
+            <td>{{ usuario.nome }}</td>
+            <td class="center">{{ usuario.email }}</td>
+            <td class="center">{{ usuario.root }}</td>
+            <td class="center">
+              <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"
+                [routerLink]="['/usuarios', usuario.id]"></a>
+              <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"
+                (click)="confirmarExclusao(usuario)">
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+              <td colspan="5">
+                  Nenhum usuário encontrado.
+              </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <div class="ui-g-12">
+      <a routerLink="/usuarios/form" pButton label="Novo Usuário" icon="fa-plus-circle"></a>
+    </div>
+  </div>
+</div>
