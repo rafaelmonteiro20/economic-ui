@@ -2,6 +2,9 @@ import { URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { AuthHttp } from 'angular2-jwt';
 import { environment } from '../../environments/environment';
+
+import { Usuario } from '../core/model/Usuario';
+
 import 'rxjs/add/operator/toPromise';
 
 export class UsuarioFilter {
@@ -24,7 +27,13 @@ export class UsuarioService {
       params.set('nome', filtro.nome);
     }
     
-    return this.http.get(`${this.urlUsuarios}`, { search: params })
+    return this.http.get(this.urlUsuarios, { search: params })
+      .toPromise()
+      .then(response => response.json());
+  }
+
+  salvar(usuario: Usuario): Promise<Usuario> {
+    return this.http.post(this.urlUsuarios, JSON.stringify(usuario))
       .toPromise()
       .then(response => response.json());
   }
