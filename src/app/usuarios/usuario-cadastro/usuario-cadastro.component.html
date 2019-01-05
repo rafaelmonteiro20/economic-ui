@@ -1,0 +1,71 @@
+<div class="container" style="margin-top: 60px">
+  <div class="ui-g">
+      <div class="ui-g-12">
+          <h1 style="font-size:26px">
+            {{ editando ? 'Edição de ' : 'Novo' }} Usuário
+          </h1>
+      </div>
+  </div>
+
+  <form #formulario="ngForm" autocomplete="off" (ngSubmit)="salvar(formulario)">
+    <div class="ui-g">
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <app-label [control]="nome" value="Nome" required="true"></app-label>
+        <input pInputText type="text" name="nome" required minlength="3" 
+          maxlength="60" [(ngModel)]="usuario.nome" #nome="ngModel">
+      
+        <app-message [control]="nome" error="required" text="Informe o nome"></app-message>
+        <app-message [control]="nome" error="minlength" 
+          text="Tamanho mínimo de {{ nome.errors?.minlength?.requiredLength }} caracteres"></app-message>
+      </div>
+    </div>
+
+    <div class="ui-g">
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <app-label [control]="email" value="E-mail" required="true"></app-label>
+        <input pInputText type="text" name="email" required minlength="3" 
+          maxlength="100" [(ngModel)]="usuario.email" #email="ngModel">
+        <app-message [control]="email" error="required" text="Informe o E-mail"></app-message>
+      </div>
+    </div>
+
+    <div class="ui-g">
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <app-label [control]="senha" value="Senha" required="true"></app-label>
+        <input pInputText type="password" name="senha" required minlength="3" 
+          maxlength="100" [(ngModel)]="usuario.senha" #senha="ngModel">
+        <app-message [control]="senha" error="required" text="Informe a senha"></app-message>
+      </div>
+
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <app-label [control]="senha" value="Confirmação Senha" required="true"></app-label>
+        <input pInputText type="password" name="senha" required minlength="3" 
+          maxlength="100" [(ngModel)]="usuario.senha" #senha="ngModel">
+        <app-message [control]="senha" error="required" text="Confirme a senha"></app-message>
+      </div>
+    </div>
+
+    <div class="ui-g">
+      <div class="ui-g-6 ui-md-3">
+        <label class="form-control-label">Status</label>     
+        <p-inputSwitch onLabel="Ativo" offLabel="Inativo"
+          name="ativo" [(ngModel)]="usuario.ativo"></p-inputSwitch>
+      </div>
+    </div>
+
+    <div class="ui-g">
+      <div class="ui-g-6 ui-md-3">
+        <label class="form-control-label">Root</label>     
+        <p-inputSwitch onLabel="Sim" offLabel="Não"
+          name="root" [(ngModel)]="usuario.root"></p-inputSwitch>
+      </div>
+    </div>
+
+    <div class="ui-g-12" style="margin-top:20px">
+      <button pButton type="submit" label="Salvar" [disabled]="formulario.invalid"></button>
+      <button pButton type="button" label="Novo" class="ui-button-info"></button>
+      <a routerLink="/usuarios">Voltar para a pesquisa</a>
+    </div>
+  </form>
+
+</div>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
-import { UsuarioService, UsuarioFilter } from '../usuario.service';
-import { ErrorHandlerService } from '../../core/error-handler.service';
 import { Title } from '@angular/platform-browser';
+
+import { ErrorHandlerService } from '../../core/error-handler.service';
+import { UsuarioService, UsuarioFilter } from '../usuario.service';
+import { Usuario } from '../../core/model/Usuario';
 
 @Component({
   selector: 'app-usuarios-pesquisa',

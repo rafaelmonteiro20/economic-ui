@@ -12,6 +12,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { SharedModule } from '../shared/shared.module';
 import { UsuariosRoutingModule } from './usuarios-routing.module';
 import { UsuariosPesquisaComponent } from './usuarios-pesquisa/usuarios-pesquisa.component';
+import { UsuarioCadastroComponent } from './usuario-cadastro/usuario-cadastro.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { UsuariosPesquisaComponent } from './usuarios-pesquisa/usuarios-pesquisa
     UsuariosRoutingModule
   ],
   declarations: [
-    UsuariosPesquisaComponent
+    UsuariosPesquisaComponent,
+    UsuarioCadastroComponent
   ]
 })
 export class UsuariosModule {
