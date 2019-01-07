@@ -30,7 +30,7 @@
             <th>Nome</th>
             <th>E-mail</th>
             <th class="wid100">Admin</th>
-            <th class="wid100"></th>
+            <th class="wid150"></th>
           </tr>
         </ng-template>
 
@@ -45,8 +45,13 @@
             </td>
             <td>{{ usuario.nome }}</td>
             <td>{{ usuario.email }}</td>
-            <td class="center">{{ usuario.root }}</td>
             <td class="center">
+              <i class="fa fa-check-circle green fs20" *ngIf="usuario.root"></i>
+            </td>
+            <td class="center">
+              <button pButton icon="fa-unlock" pTooltip="Permissões" tooltipPosition="top"
+                (click)="mostrarDialogo(usuario)">
+              </button>
               <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"
                 [routerLink]="['/usuarios', usuario.id]"></a>
               <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"
@@ -71,3 +76,11 @@
     </div>
   </div>
 </div>
+
+<p-dialog header="Permissões" [(visible)]="mostrar" modal="true" [width]="400">
+  <ul *ngIf="permissoes.length > 0">
+      <li *ngFor="let permissao of permissoes">{{permissao.descricao}}<li>
+  </ul>
+
+  <label *ngIf="permissoes.length == 0">Nenhuma permissão encontrada.</label>
+</p-dialog>

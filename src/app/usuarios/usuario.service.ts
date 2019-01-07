@@ -4,6 +4,7 @@ import { AuthHttp } from 'angular2-jwt';
 import { environment } from '../../environments/environment';
 
 import { Usuario } from '../core/model/Usuario';
+import { Permissao } from '../core/model/Permissao';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -34,6 +35,12 @@ export class UsuarioService {
 
   salvar(usuario: Usuario): Promise<Usuario> {
     return this.http.post(this.urlUsuarios, JSON.stringify(usuario))
+      .toPromise()
+      .then(response => response.json());
+  }
+
+  buscarPermissoes(id: number): Promise<any> {
+    return this.http.get(`${this.urlUsuarios}/${id}/permissoes`)
       .toPromise()
       .then(response => response.json());
   }

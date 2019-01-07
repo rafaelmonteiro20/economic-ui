@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { DialogModule } from 'primeng/dialog';
 
 import { SharedModule } from '../shared/shared.module';
 import { UsuariosRoutingModule } from './usuarios-routing.module';
@@ -25,6 +26,7 @@ import { UsuarioCadastroComponent } from './usuario-cadastro/usuario-cadastro.co
     TooltipModule,
     InputMaskModule,
     InputSwitchModule,
+    DialogModule,
 
     SharedModule,
     UsuariosRoutingModule

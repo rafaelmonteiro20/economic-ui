@@ -15,6 +15,7 @@ import { AuthService } from './../seguranca/auth.service';
 import { ErrorHandlerService } from './error-handler.service';
 import { PessoaService } from './../pessoas/pessoa.service';
 import { UsuarioService } from '../usuarios/usuario.service';
+import { PermissaoService } from '../usuarios/permissao.service';
 import { LancamentoService } from './../lancamentos/lancamento.service';
 import { CategoriaService } from './../categorias/categoria.service';
 import { HomeService } from './../home/home.service';
@@ -50,6 +51,7 @@ registerLocaleData(localePt);
     PessoaService,
     CategoriaService,
     UsuarioService,
+    PermissaoService,
     HomeService,
     RelatoriosService,
     ErrorHandlerService,

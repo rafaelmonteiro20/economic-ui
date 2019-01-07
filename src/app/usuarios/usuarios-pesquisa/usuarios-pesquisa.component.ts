@@ -13,7 +13,9 @@ import { Usuario } from '../../core/model/Usuario';
 export class UsuariosPesquisaComponent implements OnInit {
 
   usuarios = [];
+  permissoes = [];
   filtro = new UsuarioFilter();
+  mostrar = false;
 
   constructor(private usuarioService: UsuarioService,
     private errorHandler: ErrorHandlerService,
@@ -36,6 +38,13 @@ export class UsuariosPesquisaComponent implements OnInit {
 
   confirmarExclusao(usuario: Usuario) {
     console.log('Confirmar exclusão..')
+  }
+
+  mostrarDialogo(usuario: Usuario) {
+    this.mostrar = true;
+    this.usuarioService.buscarPermissoes(usuario.id)
+      .then(permissoes => this.permissoes = permissoes)
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
 }
